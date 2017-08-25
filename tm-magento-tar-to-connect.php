@@ -419,8 +419,8 @@ class Pulsestorm_MagentoTarToConnect
             if (!is_file($package['base_dir'] . '/' . $package['archive_files'])) {
                 $gulp = 'gulp --module='
                     . $packageName
-                    . (isset($package['version']) ? ':' . $package['version'] : '')
-                    . " --nocore\n"
+                    . (isset($package['extension_version']) ? ':' . $package['extension_version'] : '')
+                    . " --nocore --nochecker\n"
                 ;
                 throw new Exception("Archive file not exist : " . $package['archive_files'] . "\n Run : > {$gulp}", 1);
             }
