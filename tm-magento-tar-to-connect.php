@@ -409,25 +409,37 @@ class Pulsestorm_MagentoTarToConnect
             }
             $packageInfo = $repository->getPackage($packageName, $vendor, 'stable');
 
-            $package['notes'] = $packageInfo['description'];
-
             $package['extension_version'] = $packageInfo['version'];
+
+            $package['notes'] =
+                (isset($packageInfo['description']) ? $packageInfo['description'] . '.' : '')
+                . '  ' . $package['extension_name'] . '.'
+                . ' Version number: ' . $package['extension_version'] . '.'
+                . ' Stability: Stable Compatibility: 1.7, 1.8, 1.9, 1.9.1, 1.9.2, 1.9.3.';
 
             $package['archive_files'] = strtolower($packageShortName) . '-' . $package['extension_version'] . '.zip';
             // print_r($packageInfo);
             // die;
-            if (!is_file($package['base_dir'] . '/' . $package['archive_files'])) {
-                $gulp = 'gulp --module='
-                    . $packageName
-                    . (isset($package['extension_version']) ? ':' . $package['extension_version'] : '')
-                    . " --nocore --nochecker\n"
-                ;
-                throw new Exception("Archive file not exist : " . $package['archive_files'] . "\n Run : > {$gulp}", 1);
-            }
         }
         // print_r($packages);
+        $gulp = "\ngulp --module=";
+        foreach ($packages as $packageName => $packageConfig) {
+            $gulp .= $packageName
+                . (isset($packageConfig['extension_version']) ? ':' . $packageConfig['extension_version'] : '') . ',';
+        }
+        $gulp = trim($gulp, ',') . " --nocore --nochecker\n";
+        echo $gulp;
+        // die;
 
         foreach ($packages as $packageName => $packageConfig) {
+            if (!is_file($packageConfig['base_dir'] . '/' . $packageConfig['archive_files'])) {
+                $gulp = 'gulp --module='
+                    . $packageName
+                    . (isset($packageConfig['extension_version']) ? ':' . $packageConfig['extension_version'] : '')
+                    . " --nocore --nochecker\n"
+                ;
+                throw new Exception("Archive file not exist : " . $packageConfig['archive_files'] . "\n Run : > {$gulp}", 1);
+            }
             self::output(
                 self::buildExtensionFromConfig($packageConfig)
             );

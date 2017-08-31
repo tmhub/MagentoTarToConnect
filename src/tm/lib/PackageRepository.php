@@ -94,6 +94,8 @@ class PackageRepository {
     {
         $a = array(
             'tm/abandoned'             => 'TM_Abandoned',
+            'tm/address-autocomplete'  => 'TM_AddressAutocomplete',
+            'tm/amp'                   => 'TM_Amp',
             'tm/ajax-layered-navigation' => 'TM_AjaxLayeredNavigation',
             'tm/ajax-pro'              => 'TM_AjaxPro',
             'tm/ajax-search'           => 'TM_AjaxSearch',
@@ -110,7 +112,7 @@ class PackageRepository {
             'tm/cdn'                   => 'TM_CDN',
             'tm/core'                  => 'TM_Core',
             'tm/countdowntimer'        => 'TM_CountdownTimer',
-            'tm/dailydeals'            => 'TM_DailyDeals',
+            'tm/dailydeals'            => array('TM_DailyDeals', 'TM_CountdownTimer'),
             'tm/downloadable'          => 'TM_Downloadable',
             'tm/easy-banner'           => 'TM_EasyBanner',
             'tm/easycatalogimg'        => 'TM_EasyCatalogImg',
@@ -141,9 +143,10 @@ class PackageRepository {
             'tm/productvideos'         => 'TM_ProductVideos',
             'tm/quickshopping'         => 'TM_QuickShopping',
             'tm/review-reminder'       => 'TM_ReviewReminder',
-            'tm/richsnippets'          => 'TM_RichSnippets',
+            'tm/recaptcha'             => 'TM_Recaptcha',
             'tm/recurring'             => 'TM_Recurring',
             'tm/reward'                => 'TM_Reward',
+            'tm/richsnippets'          => 'TM_RichSnippets',
             'tm/secure'                => array('TM_BigBrother', 'TM_TwoFactorAuthentication'),
             'tm/smartsuggest'          => 'TM_SmartSuggest',
             'tm/sold-together'         => 'TM_SoldTogether',
@@ -151,7 +154,7 @@ class PackageRepository {
             'tm/subscription'          => 'TM_Subscription',
             'tm/subscription-checker'  => 'TM_SubscriptionChecker',
             'tm/suggestpage'           => 'TM_SuggestPage',
-            'tm/templatef001'          => array('TM_Templatef001', 'TM_Ajax', 'TM_Featured'),
+            'tm/templatef001'          => array('TM_Ajax', 'TM_Featured', 'TM_Templatef001'),
             'tm/templatef002'          => 'TM_Templatef002',
             'tm/templatem001'          => 'TM_Templatem001',
             'tm/testimonials'          => 'TM_Testimonials',
@@ -172,7 +175,7 @@ class PackageRepository {
             'swissup/countdowntimer' => 'Swissup_Countdowntimer',
             'swissup/address-autocomplete' => 'Swissup_AddressAutocomplete',
             'swissup/taxvat'         => 'Swissup_Taxvat',
-            'swissup/ajaxpro'        => 'Swissup_Ajaxpro',
+            'swissup/ajaxpro'        => array('Swissup_Ajaxpro', 'Swissup_Suggestpage'),
             'swissup/checkout-success' => 'Swissup_CheckoutSuccess',
             'swissup/sold-together'  => 'Swissup_SoldTogether',
             'swissup/firecheckout'   => 'Swissup_Firecheckout',
@@ -192,10 +195,22 @@ class PackageRepository {
             'swissup/easyflags'      => 'Swissup_Easyflags',
             'swissup/slick-carousel' => 'Swissup_SlickCarousel',
             'swissup/dailydeals'     => 'Swissup_Dailydeals',
-            'swissup/font-awesome'   => 'Swissup_FontAwesome'
+            'swissup/font-awesome'   => 'Swissup_FontAwesome',
+            'swissup/suggestpage'    => 'Swissup_Suggestpage'
         );
 
         $name = isset($a[$packageName]) ? $a[$packageName] : false;
+        if (false === $name) {
+            list($vendor, $module) = explode('/', $packageName);
+            if ('tm' == $vendor) {
+                $vendor = 'TM';
+            } else {
+                $vendor = ucfirst($vendor);
+            }
+            $module = str_replace(' ', '', ucwords(str_replace('_', ' ', $module)));
+            $module = str_replace(' ', '', ucwords(str_replace('-', ' ', $module)));
+            $name = $vendor . '_' . $module;
+        }
         if (is_array($name)) {
             $name = current($name);
         }
