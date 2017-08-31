@@ -7,26 +7,26 @@ $packages = array(
         'description' => 'Templates Master core functionality for our another modules',
         'notes' => ''
     ),
-    // 'tm/argento' => array(
-    //     'summary' => 'Magento responsive theme with 6 layouts and 20 built-in modules',
-    //     'description' => 'Premium Magento template brings your store to the highest level of usability. Developed given the innovative trends in e-commerce.',
-    //     'notes' => ''
-    // ),
-    // 'tm/templatef002' => array(
-    //     'summary' => 'Free Magento theme with amazing minimalistic design.',
-    //     'description' => 'The template is available in 10 colors. Comes with slider on the homepage.',
-    //     'notes' => ''
-    // ),
-    // 'tm/templatef001' => array(
-    //     'summary' => 'Highly rated Free Magento theme available in 10 colors.',
-    //     'description' => 'The template best suits any kind of store. Includes quick product overview feature, featured products block and image slider.',
-    //     'notes' => ''
-    // ),
-    // 'tm/firecheckout' => array(
-    //     'summary' => 'Best Magento one step checkout extension with 6 layouts.',
-    //     'description' => 'Simplifies the checkout process. Includes the Order Attachments, GEO iP, Google Address Autocomplete, Checkout VAT, USPS Address Verification and many more beneficial features to help your customers complete a purchase in your store.',
-    //     'notes' => ''
-    // ),
+    'tm/argento' => array(
+        'summary' => 'Magento responsive theme with 6 layouts and 20 built-in modules',
+        'description' => 'Premium Magento template brings your store to the highest level of usability. Developed given the innovative trends in e-commerce.',
+        'notes' => ''
+    ),
+    'tm/templatef002' => array(
+        'summary' => 'Free Magento theme with amazing minimalistic design.',
+        'description' => 'The template is available in 10 colors. Comes with slider on the homepage.',
+        'notes' => ''
+    ),
+    'tm/templatef001' => array(
+        'summary' => 'Highly rated Free Magento theme available in 10 colors.',
+        'description' => 'The template best suits any kind of store. Includes quick product overview feature, featured products block and image slider.',
+        'notes' => ''
+    ),
+    'tm/firecheckout' => array(
+        'summary' => 'Best Magento one step checkout extension with 6 layouts.',
+        'description' => 'Simplifies the checkout process. Includes the Order Attachments, GEO iP, Google Address Autocomplete, Checkout VAT, USPS Address Verification and many more beneficial features to help your customers complete a purchase in your store.',
+        'notes' => ''
+    ),
     /*
 EASY SPOTLIGHT
 'summary' => 'Shows new products on main, catalog and product pages.',
