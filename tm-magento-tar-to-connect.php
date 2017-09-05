@@ -393,8 +393,11 @@ class Pulsestorm_MagentoTarToConnect
         $config_file = array_shift($argv);
         $config = self::loadConfig($config_file);
 
-        // print_r($config);
         $packages = $config['packages'];
+        $_packages = array_flip(explode(',', array_shift($argv)));
+        if (!empty($_packages)) {
+            $packages = array_intersect_key($packages, $_packages);
+        }
         $repository = new PackageRepository();
 
         foreach ($packages as $packageName => &$package) {
