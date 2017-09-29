@@ -13,7 +13,15 @@ This shell script will take a standard tar archive, untar it, build the Connect 
 
 The syntax for using this script is as following
 
-    $ ./tm-magento-tar-to-connect.php tm-config.php tm/ajax-pro,tm/ajax-search
+    $ gi clone git@github.com:tmhub/MagentoTarToConnect.git
+    $ cd MagentoTarToConnect
+
+Open tm-config.php
+Set correcty build path
+
+$buildPath = '';
+
+    $ ./tm-magento-tar-to-connect.php tm-config.php tm/ajax-pro
 
 Where `tm-config.php` is a PHP file which returns a set of configuration key/value pairs.  These key/value pairs provide the script with the location of an archive file, the output location, as well as the bare minimum Magento Connect fields needed to create a valid extension.  An example file might look something like this
 
