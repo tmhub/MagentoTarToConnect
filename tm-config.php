@@ -1,6 +1,6 @@
 <?php
 
-$buildPath = '/var/www/deploy/gulp-release-builder/tm/__bin';
+$buildPath = '/var/www/deploy/gulp-release-builder';
 $packages = array(
     'tm/core' => array(
         'summary' => 'Templates Master core functionality module',
@@ -242,7 +242,7 @@ return array(
 'packages' => $packages,
 //The base_dir and archive_file path are combined to point to your tar archive
 //The basic idea is a seperate process builds the tar file, then this finds it
-'base_dir'               => $buildPath,
+'base_dir'               => $buildPath . '/tm/__bin',
 'archive_files'          => '',
 
 //The Magento Connect extension name.  Must be unique on Magento Connect
@@ -261,7 +261,7 @@ return array(
 'auto_detect_version'   => false,
 
 //Where on your local system you'd like to build the files to
-'path_output'            => $buildPath . '/packages',
+'path_output'            => $buildPath . '/tm/__bin/packages',
 
 //Magento Connect license value.
 'stability'              => 'stable',

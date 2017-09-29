@@ -13,7 +13,7 @@ This shell script will take a standard tar archive, untar it, build the Connect 
 
 The syntax for using this script is as following
 
-    $ gi clone git@github.com:tmhub/MagentoTarToConnect.git
+    $ git clone git@github.com:tmhub/MagentoTarToConnect.git
     $ cd MagentoTarToConnect
 
 Open tm-config.php and set correcty build path in var $buildPath = '';
