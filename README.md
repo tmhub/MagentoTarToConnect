@@ -16,10 +16,8 @@ The syntax for using this script is as following
     $ gi clone git@github.com:tmhub/MagentoTarToConnect.git
     $ cd MagentoTarToConnect
 
-Open tm-config.php
-Set correcty build path
-
-$buildPath = '';
+Open tm-config.php and set correcty build path in var $buildPath = '';
+Run something like
 
     $ ./tm-magento-tar-to-connect.php tm-config.php tm/ajax-pro
 
