@@ -237,6 +237,11 @@ EASY SPOTLIGHT
         'description' => 'AMP template for optimizing user experience on mobile devices.',
         'notes' => ''
     ),
+    'tm/gdpr' => array(
+        'summary' => 'GDPR compliance module',
+        'description' => 'GDPR module allows to configure and display checkboxes for forms containing personal data. Extension allows customer to request deletion of personal data. Customer requests can be processed manually or automated (by cron). Third-party modules can easily add new forms and request handlers',
+        'notes' => ''
+    ),
 );
 return array(
 'packages' => $packages,
