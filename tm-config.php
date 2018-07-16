@@ -1,10 +1,15 @@
 <?php
 
-$buildPath = '/var/www/deploy/gulp-release-builder';
+$buildPath = '/home/om3r/Work/gulp-release-builder';
 $packages = array(
     'tm/core' => array(
         'summary' => 'Templates Master core functionality module',
         'description' => 'Templates Master core functionality for our another modules',
+        'notes' => ''
+    ),
+    'tm/email' => array(
+        'summary' => 'Templates Master Email module',
+        'description' => 'Templates Master Email module; Integartion with smtp. History, queue etc.',
         'notes' => ''
     ),
     'tm/argento' => array(
