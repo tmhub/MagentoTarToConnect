@@ -400,6 +400,11 @@ class Pulsestorm_MagentoTarToConnect
         }
         $repository = new PackageRepository();
 
+        $nocore = false;
+        if (!isset($packages['tm/core'])) {
+            $nocore = true;
+        }
+
         foreach ($packages as $packageName => &$package) {
             $package = array_merge($config, $package);
 
@@ -420,7 +425,13 @@ class Pulsestorm_MagentoTarToConnect
                 . ' Version number: ' . $package['extension_version'] . '.'
                 . ' Stability: Stable Compatibility: 1.7, 1.8, 1.9, 1.9.1, 1.9.2, 1.9.3.';
 
-            $package['archive_files'] = strtolower($packageShortName) . '-' . $package['extension_version'] . '-nocore.zip';
+            $package['archive_files'] = strtolower($packageShortName) . '-' . $package['extension_version'];
+
+            if ($nocore) {
+                $package['archive_files'] .= '-nocore';
+            }
+
+            $package['archive_files'] .= '.zip';
             // print_r($packageInfo);
             // die;
         }
@@ -430,17 +441,31 @@ class Pulsestorm_MagentoTarToConnect
             $gulp .= $packageName
                 . (isset($packageConfig['extension_version']) ? ':' . $packageConfig['extension_version'] : '') . ',';
         }
-        $gulp = trim($gulp, ',') . " --nocore --nochecker\n";
+
+        $nocore = false;
+        $gulp = trim($gulp, ',') . " --nochecker";
+        if (!isset($packages['tm/core'])) {
+            $nocore = true;
+            $gulp .= " --nocore";
+        }
+        $gulp .= "\n";
         echo $gulp;
         // die;
+
         foreach ($packages as $packageName => $packageConfig) {
             if (!is_file($packageConfig['base_dir'] . '/' . $packageConfig['archive_files'])) {
                 $gulpPath = realpath($packageConfig['base_dir'] . '/../../');
                 $gulp = 'gulp --module='
                     . $packageName
                     . (isset($packageConfig['extension_version']) ? ':' . $packageConfig['extension_version'] : '')
-                    . " --nocore --nochecker\n"
+                    . " --nochecker"
                 ;
+
+                if ($nocore) {
+                    $gulp .= " --nocore";
+                }
+                $gulp .= "\n";
+
                 shell_exec("cd $gulpPath && " . $gulp);
                 // throw new Exception("Archive file not exist : " . $packageConfig['archive_files'] . "\n Run : > {$gulp}", 1);
             }
