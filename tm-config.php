@@ -32,6 +32,11 @@ $packages = array(
         'description' => 'Simplifies the checkout process. Includes the Order Attachments, GEO iP, Google Address Autocomplete, Checkout VAT, USPS Address Verification and many more beneficial features to help your customers complete a purchase in your store.',
         'notes' => ''
     ),
+    'tm/checkout-success' => array(
+        'summary' => 'Checkout Success Page extension for Magento 1.x',
+        'description' => 'Checkout Success Page module',
+        'notes' => ''
+    ),
     /*
 EASY SPOTLIGHT
 'summary' => 'Shows new products on main, catalog and product pages.',
