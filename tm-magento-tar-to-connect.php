@@ -436,7 +436,7 @@ class Pulsestorm_MagentoTarToConnect
             // die;
         }
         // print_r($packages);
-        $gulp = "\ngulp --module=";
+        $gulp = "\ngulp --package=";
         foreach ($packages as $packageName => $packageConfig) {
             $gulp .= $packageName
                 . (isset($packageConfig['extension_version']) ? ':' . $packageConfig['extension_version'] : '') . ',';
@@ -455,7 +455,7 @@ class Pulsestorm_MagentoTarToConnect
         foreach ($packages as $packageName => $packageConfig) {
             if (!is_file($packageConfig['base_dir'] . '/' . $packageConfig['archive_files'])) {
                 $gulpPath = realpath($packageConfig['base_dir'] . '/../../');
-                $gulp = 'gulp --module='
+                $gulp = 'gulp --package='
                     . $packageName
                     . (isset($packageConfig['extension_version']) ? ':' . $packageConfig['extension_version'] : '')
                     . " --nochecker"
